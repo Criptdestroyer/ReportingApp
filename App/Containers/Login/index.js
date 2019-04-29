@@ -4,6 +4,8 @@ import Loader from '@Loader'
 import { allLogo } from '@Assets'
 import { toDp } from '@percentageToDP'
 import { postLogin} from '@Apis'
+import md5 from 'md5';
+
 const { width, height } = Dimensions.get('window')
 type Props = {}
 export default class Login extends Component<Props> {
@@ -17,6 +19,44 @@ export default class Login extends Component<Props> {
   }
   actionLogin = (email, password) => {
   // coding...
+
+  if(this.state.email === ''){
+      alert("Email tidak boleh kosong")
+  }else if(this.state.password === ''){
+      alert("password tidak boleh kosong")
+  }else{
+      this.setState({loading:true})
+      var formData = new FormData()
+      formData.append('email',this.state.email)
+      formData.append('password',md5(this.state.password))
+
+      postLogin(formData).then(respon => {
+        console.log(formData)
+        console.log(respon)
+          console.log(respon)
+          this.setState({loading:false})
+      }).catch(error => {
+          console.log(error)
+          this.setState({loading:false})
+      })
+      setTimeout(()=>{
+          this.setState({loading:false})
+          // Alert.alert(
+          //     'Informasi',
+          //     'Register Succes',
+          //     [
+          //     {text: 'Ok', onPress: () => this.back()},
+          //     {
+          //         text: 'Cancel',
+          //         onPress: () => console.log('Cancel Pressed'),
+          //         style: 'cancel',
+          //     },
+          //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+          //     ],
+          //     {cancelable: false},
+          // );
+      },2000)
+  }  
   }
   render() {
     return (

@@ -45,6 +45,20 @@ class Register extends Component {
             })
             setTimeout(()=>{
                 this.setState({loading:false})
+                // Alert.alert(
+                //     'Informasi',
+                //     'Register Succes',
+                //     [
+                //     {text: 'Ok', onPress: () => this.back()},
+                //     {
+                //         text: 'Cancel',
+                //         onPress: () => console.log('Cancel Pressed'),
+                //         style: 'cancel',
+                //     },
+                //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+                //     ],
+                //     {cancelable: false},
+                // );
             },2000)
         }  
 
