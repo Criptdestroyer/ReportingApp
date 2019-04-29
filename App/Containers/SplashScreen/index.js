@@ -8,7 +8,7 @@ export default class SplashScreen extends Component<Props> {
 
   componentWillMount(){
     setTimeout(()=> {
-      alert("Hallo WRI Palembang")
+      this.props.navigation.replace('Login')
     },3000)
   }
 
