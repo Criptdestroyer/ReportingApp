@@ -1,3 +1,4 @@
+import React, { Component } from 'react'
 import { StyleSheet, View, Modal, ActivityIndicator, Text} from 'react-native'
 
 const Loader = props => {

@@ -6,6 +6,12 @@ const { width, height } = Dimensions.get('window')
 type Props = {}
 export default class SplashScreen extends Component<Props> {
 
+  componentWillMount(){
+    setTimeout(()=> {
+      alert("Hallo WRI Palembang")
+    },3000)
+  }
+
   render() {
     return (
       <Image source={allLogo.splashscreen} style={styles.splashscreen} />
