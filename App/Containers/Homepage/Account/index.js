@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity,
     AsyncStorage,
+    Alert,
   } from 'react-native';
   
 import { toDp } from '@percentageToDP'
@@ -30,17 +31,32 @@ class Account extends Component{
         })
       }
 
-
+    
+    logout(data){
+        Alert.alert(
+            'Logout',
+            'Anda yakin mau keluar?',
+            [
+              {text: 'OK', onPress: () => this.removeItemValue(data)},
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              
+            ],
+            
+          );
+    }
     async removeItemValue(key) {
-        console.log(key)
-        try {
-        await AsyncStorage.removeItem(key);
-        this.props.navigation.replace('SplashScreen')
-        return true;
-        }
-        catch(exception) {
-        return false;
-        }
+            try {
+                await AsyncStorage.removeItem(key);
+                this.props.navigation.replace('SplashScreen')
+                return true;
+            }catch(exception) {
+                return false;
+            }
+        
     } 
 
     render(){
@@ -53,7 +69,7 @@ class Account extends Component{
                         <Text style={styles.name} >{this.state.fullname}</Text>
                         <Text style={styles.info}>UX Designer / Mobile developer</Text>
                         <Text style={styles.description}>{this.state.email}</Text>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={() => this.removeItemValue('dataUser')}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => this.logout('dataUser')}>
                                 <Text>Logout</Text>  
                             </TouchableOpacity>              
                             {/* <TouchableOpacity style={styles.buttonContainer}>

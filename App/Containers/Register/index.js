@@ -83,7 +83,7 @@ class Register extends Component {
 
     validateFullname = (fullname) =>{
         console.log(fullname)
-        let reg = /^[aA-zZ]*$/;
+        let reg = /^[aA-zZ ]*$/;
         if(reg.test(fullname)===false){
             console.log("full name contain number")
             this.setState({fullname:fullname})

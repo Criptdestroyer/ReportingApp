@@ -13,6 +13,6 @@
 ### Studi kasus 2 (^ done)
 1. Buat validasi, jika Sudah login dari Splash Screen maka akan langsung masuk ke
 Home, tapi jika belum Login, maka akan tampil Halaman Login^
-2. Buatlah halaman Profile dari data AsyncStorage dan tambahkan fungsi Logout
+2. Buatlah halaman Profile dari data AsyncStorage dan tambahkan fungsi Logout^
 3. Fungsi Logout ketika di klik, maka akan ada konfirmasi terlebih dahulu, jika "YA",
 maka akan kembali ke halaman login
