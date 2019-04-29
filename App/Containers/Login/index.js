@@ -4,7 +4,7 @@ import Loader from '@Loader'
 import { allLogo } from '@Assets'
 import { toDp } from '@percentageToDP'
 import { postLogin} from '@Apis'
-import md5 from 'md5';
+import md5 from '../../Helper/md5';
 
 const { width, height } = Dimensions.get('window')
 type Props = {}
@@ -28,17 +28,27 @@ export default class Login extends Component<Props> {
       this.setState({loading:true})
       var formData = new FormData()
       formData.append('email',this.state.email)
-      formData.append('password',md5(this.state.password))
+      formData.append('password',md5.hex_md5(this.state.password))
 
       postLogin(formData).then(respon => {
-        console.log(formData)
-        console.log(respon)
           console.log(respon)
-          this.setState({loading:false})
+          if(respon.data.length === 0) {
+                Alert.alert(
+                  'Gagal Masuk',
+                  'Email atau Password salah',
+                  [
+                    {text: 'OK', onPress: () => this.setState({loading: false})},
+                  ]
+                );
+          } else {
+                AsyncStorage.setItem('dataUser', JSON.stringify(respon.data))
+                this.props.navigation.replace('Homepage')
+          }
       }).catch(error => {
           console.log(error)
           this.setState({loading:false})
       })
+      
       setTimeout(()=>{
           this.setState({loading:false})
           // Alert.alert(
