@@ -29,6 +29,10 @@ class Register extends Component {
             alert("Email tidak boleh kosong")
         }else if(this.state.password === ''){
             alert("password tidak boleh kosong")
+        }else if(this.validateEmail(this.state.email)){
+            alert("format email tidak benar")
+        }else if(this.validateFullname(this.state.fullname)){
+            alert("full name mengandung angka")
         }else{
             this.setState({loading:true})
             var formData = new FormData()
@@ -63,16 +67,31 @@ class Register extends Component {
 
         
     }
-    validate = (email) =>{
+    validateEmail = (email) =>{
         console.log(email)
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
         if(reg.test(email)===false){
             console.log("email is not correct")
             this.setState({email:email})
-            return false
+            return true
         }else{
             this.setState({email:email})
             console.log("Email is Correct");
+            return false
+        }
+    }
+
+    validateFullname = (fullname) =>{
+        console.log(fullname)
+        let reg = /^[aA-zZ]*$/;
+        if(reg.test(fullname)===false){
+            console.log("full name contain number")
+            this.setState({fullname:fullname})
+            return true
+        }else{
+            this.setState({fullname:fullname})
+            console.log("fullname is Correct");
+            return false
         }
     }
 
@@ -100,7 +119,7 @@ class Register extends Component {
                                 value={this.state.fullname}
                                 autoCapitalize={'none'}
                                 maxLength={50}
-                                onChangeText={ (fullname) => this.setState({ fullname }) }
+                                onChangeText={ (fullname) => this.validateFullname(fullname) }
                             />
                         </View>
                         <View style={styles.box}>
@@ -112,7 +131,7 @@ class Register extends Component {
                                 value={this.state.email}
                                 autoCapitalize={'none'}
                                 maxLength={30}
-                                onChangeText={ (email) => this.validate(email) }
+                                onChangeText={ (email) => this.validateEmail(email) }
                             />
                         </View>
                         <View style={styles.box}>
