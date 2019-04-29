@@ -38,28 +38,27 @@ class Register extends Component {
 
             postRegister(formData).then(respon => {
                 console.log(respon)
-                this.setState({loading:false})
+                setTimeout(()=>{this.setState({loading:false}),
+                                Alert.alert(
+                                    'Informasi',
+                                    'Register Succes',
+                                    [
+                                    {text: 'Ok', onPress: () => this.props.navigation.replace('Login') /*this.back()*/},
+                                    // {
+                                    //     text: 'Cancel',
+                                    //     onPress: () => console.log('Cancel Pressed'),
+                                    //     style: 'cancel',
+                                    // },
+                                    // {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                    ],
+                                    {cancelable: false},
+                                )
+                            },2000)
             }).catch(error => {
                 console.log(error)
                 this.setState({loading:false})
             })
-            setTimeout(()=>{
-                this.setState({loading:false})
-                // Alert.alert(
-                //     'Informasi',
-                //     'Register Succes',
-                //     [
-                //     {text: 'Ok', onPress: () => this.back()},
-                //     {
-                //         text: 'Cancel',
-                //         onPress: () => console.log('Cancel Pressed'),
-                //         style: 'cancel',
-                //     },
-                //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-                //     ],
-                //     {cancelable: false},
-                // );
-            },2000)
+            
         }  
 
         
