@@ -4,7 +4,6 @@ import { toDp } from '@percentageToDP'
 
 
 class Home extends Component {
-
   render() {
     return (
       <View style={styles.container}>

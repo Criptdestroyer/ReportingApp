@@ -5,6 +5,7 @@ const { width, height } = Dimensions.get('window')
 import { toDp } from '@percentageToDP'
 
 import Home from './Home'
+import Account from './Account'
 
 type Props = {}
 export default class Root extends Component<Props> {
@@ -16,17 +17,6 @@ export default class Root extends Component<Props> {
     }
   }
 
-  async removeItemValue(key) {
-    console.log(key)
-    try {
-      await AsyncStorage.removeItem(key);
-      this.props.navigation.replace('SplashScreen')
-      return true;
-    }
-    catch(exception) {
-      return false;
-    }
-  } 
 
   render() {
     return (
@@ -39,6 +29,7 @@ export default class Root extends Component<Props> {
             {
               this.state.nav === 'home' ? <Home navigation={this.props.navigation} /> :
               this.state.nav === 'maps' ? <View /> :
+              this.state.nav === 'account' ? <Account navigation={this.props.navigation} /> :
               <View />
             }
 
@@ -53,7 +44,7 @@ export default class Root extends Component<Props> {
               <Image source={allLogo.icMaps} style={[styles.icMenuFooter, {tintColor: this.state.nav === 'inbox' ? '#2F5596' : '#424242' }]} />
               <Text allowFontScaling={false} style={[styles.textFooter, {color: this.state.nav === 'inbox' ? '#2F5596' : '#212121'}]}>{'Maps'}</Text>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={() => /*this.setState({nav: 'account'})*/this.removeItemValue('dataUser')} style={styles.touchFooter}>
+            <TouchableOpacity  onPress={() => this.setState({nav: 'account'})} style={styles.touchFooter}>
               <Image source={allLogo.icProfile} style={[styles.icMenuFooter, {tintColor: this.state.nav === 'account' ? '#2F5596' : '#424242' }]} />
               <Text allowFontScaling={false} style={[styles.textFooter, {color: this.state.nav === 'account' ? '#2F5596' : '#212121'}]}>{'Profile'}</Text>
             </TouchableOpacity>
