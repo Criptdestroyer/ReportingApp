@@ -15,7 +15,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Login',
+    initialRouteName: 'SplashScreen',
   }
 )
 
