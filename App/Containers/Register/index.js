@@ -4,20 +4,24 @@ import { allLogo } from '@Assets'
 import Loader from '@Loader'
 import { toDp } from '@percentageToDP'
 const { width, height } = Dimensions.get('window')
-type Props = {}
+import { postRegister } from '@Apis'
 
+type Props = {}
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
             fullname: '',
             email: '',
-            password: ''
+            password: '',
+            loading:false,
         };
     }
+
     back = () => {
         this.props.navigation.goBack()
     }
+
     register =() => {
         if(this.state.fullname === ''){
             alert("full name tidak boleh kosong")
@@ -26,13 +30,43 @@ class Register extends Component {
         }else if(this.state.password === ''){
             alert("password tidak boleh kosong")
         }else{
-            alert('Wiring ke API')
+            this.setState({loading:true})
+            var formData = new FormData()
+            formData.append('fullname',this.state.fullname)
+            formData.append('email',this.state.email)
+            formData.append('password',this.state.password)
+
+            postRegister(formData).then(respon => {
+                console.log(respon)
+                this.setState({loading:false})
+            }).catch(error => {
+                console.log(error)
+                this.setState({loading:false})
+            })
+            setTimeout(()=>{
+                this.setState({loading:false})
+            },2000)
+        }  
+
+        
+    }
+    validate = (email) =>{
+        console.log(email)
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+        if(reg.test(email)===false){
+            console.log("email is not correct")
+            this.setState({email:email})
+            return false
+        }else{
+            this.setState({email:email})
+            console.log("Email is Correct");
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
+            <Loader loading={this.state.loading}/>
                 <View style={styles.header}>
                     <View style={styles.viewTitle}>
                         <Text allowFontScaling={false} style={styles.textTitle}>Register</Text>
@@ -65,11 +99,12 @@ class Register extends Component {
                                 value={this.state.email}
                                 autoCapitalize={'none'}
                                 maxLength={30}
-                                onChangeText={ (email) => this.setState({ email }) }
+                                onChangeText={ (email) => this.validate(email) }
                             />
                         </View>
                         <View style={styles.box}>
                             <TextInput
+                                secureTextEntry={true}
                                 allowFontScaling={false}
                                 underlineColorAndroid={'transparent'}
                                 style={styles.textInput}
