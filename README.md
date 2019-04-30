@@ -1,5 +1,5 @@
 # ReportingApp
- React Native App for Reporting WRI
+ React Native App for Reporting WRI (APK Release Done)
 
 ## Progress:
  feature -> Splashscreen, Login, Register, Home, Add Report

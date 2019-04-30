@@ -34,6 +34,24 @@ export default class Profile extends Component<Props> {
         AsyncStorage.clear()
         this.props.navigation.replace('Login')
     }
+
+    confirm(data){
+      Alert.alert(
+          'Logout',
+          'Anda yakin mau keluar?',
+          [
+            {text: 'OK', onPress: this.logout },
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            
+          ],
+          
+        );
+  }
+
     updatePhoto = () => {
         Alert.alert(
           'Update Photo',
@@ -113,7 +131,7 @@ export default class Profile extends Component<Props> {
                     </View>
                     <View style={styles.content}>
                         <View style={styles.root}>
-                            <TouchableOpacity style={styles.row} onPress={() => this.logout()}>
+                            <TouchableOpacity style={styles.row} onPress={() => this.confirm()}>
                                 <Text allowFontScaling={false} style={[styles.text, {color: '#FF0000'}]}>{'Log Out'}</Text>
                             </TouchableOpacity>
                         </View>
