@@ -13,6 +13,7 @@ export default class Root extends Component<Props> {
 
   constructor(props) {
     super(props);
+    console.disableYellowBox = true
     this.state = {
       nav: this.props.navigation.getParam('nav', 'home'),
     }

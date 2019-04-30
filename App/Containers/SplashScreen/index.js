@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import {StyleSheet, Image, Dimensions, } from 'react-native'
+import {StyleSheet, Image, Dimensions, AsyncStorage } from 'react-native'
 import { allLogo } from '@Assets'
 const { width, height } = Dimensions.get('window')
-import {AsyncStorage} from 'react-native';
-
 
 type Props = {}
 export default class SplashScreen extends Component<Props> {
 
   componentWillMount() {
-    setTimeout(()=>{
+    setTimeout(() => {
       AsyncStorage.getItem('dataUser', (err, result) => {
         if(result === null) {
           this.props.navigation.replace('Login')
@@ -17,7 +15,7 @@ export default class SplashScreen extends Component<Props> {
           this.props.navigation.replace('Homepage')
         }
       })
-    },2000)
+    }, 2000)
   }
 
   render() {
