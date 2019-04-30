@@ -5,6 +5,7 @@ import {
     URL_LOGIN,
     URL_POSTING,
     URL_UPLOAD,
+    URL_GET_POSTING,
 } from '../../Configs/Api'
 
 export const postLogin = (data) => {
@@ -19,4 +20,8 @@ export const postPosting = (data) => {
 
 export const postUpload = (data) => {
     return xhr(URL_UPLOAD, 'POST', data)
+}
+
+export const getPosting = () => {
+    return xhr(URL_GET_POSTING, 'GET')
 }

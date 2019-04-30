@@ -6,6 +6,7 @@ import { toDp } from '@percentageToDP'
 
 import Home from './Home'
 import Account from './Account'
+import Profile from './Profile'
 
 type Props = {}
 export default class Root extends Component<Props> {
@@ -22,14 +23,14 @@ export default class Root extends Component<Props> {
     return (
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text allowFontScaling={false} style={styles.textTitle}>{'Nama Aplikasi'}</Text>
+            <Text allowFontScaling={false} style={styles.textTitle}>{'Reporting App'}</Text>
           </View>
 
           <View style={styles.content}>
             {
               this.state.nav === 'home' ? <Home navigation={this.props.navigation} /> :
               this.state.nav === 'maps' ? <View /> :
-              this.state.nav === 'account' ? <Account navigation={this.props.navigation} /> :
+              this.state.nav === 'account' ? <Profile navigation={this.props.navigation} /> :
               <View />
             }
 
