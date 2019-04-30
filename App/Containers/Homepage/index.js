@@ -7,6 +7,7 @@ import { toDp } from '@percentageToDP'
 import Home from './Home'
 import Account from './Account'
 import Profile from './Profile'
+import Maps from './Maps'
 
 type Props = {}
 export default class Root extends Component<Props> {
@@ -30,7 +31,7 @@ export default class Root extends Component<Props> {
           <View style={styles.content}>
             {
               this.state.nav === 'home' ? <Home navigation={this.props.navigation} /> :
-              this.state.nav === 'maps' ? <View /> :
+              this.state.nav === 'maps' ? <Maps /> :
               this.state.nav === 'account' ? <Profile navigation={this.props.navigation} /> :
               <View />
             }
@@ -42,7 +43,7 @@ export default class Root extends Component<Props> {
               <Image source={allLogo.icHome} style={[styles.icMenuFooter, {tintColor: this.state.nav === 'home' ? '#2F5596' : '#424242' }]} />
               <Text allowFontScaling={false} style={[styles.textFooter, {color: this.state.nav === 'home' ? '#2F5596' : '#212121'}]}>{'Home'}</Text>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={() => this.setState({nav: 'inbox'})} style={styles.touchFooter}>
+            <TouchableOpacity  onPress={() => this.setState({nav: 'maps'})} style={styles.touchFooter}>
               <Image source={allLogo.icMaps} style={[styles.icMenuFooter, {tintColor: this.state.nav === 'inbox' ? '#2F5596' : '#424242' }]} />
               <Text allowFontScaling={false} style={[styles.textFooter, {color: this.state.nav === 'inbox' ? '#2F5596' : '#212121'}]}>{'Maps'}</Text>
             </TouchableOpacity>
